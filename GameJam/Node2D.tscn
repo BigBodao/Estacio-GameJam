@@ -1,0 +1,81 @@
+[gd_scene format=2]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -6.0
+margin_top = -10.0
+margin_right = 1032.0
+margin_bottom = 608.0
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+margin_left = -8.0
+margin_top = 515.0
+margin_right = 273.0
+margin_bottom = 635.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+margin_left = 327.0
+margin_top = 513.0
+margin_right = 1030.0
+margin_bottom = 633.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="."]
+margin_left = 412.0
+margin_top = 329.0
+margin_right = 858.0
+margin_bottom = 449.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect9" type="ColorRect" parent="."]
+margin_left = 270.0
+margin_top = 109.0
+margin_right = 405.0
+margin_bottom = 288.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+margin_left = -10.0
+margin_top = 256.0
+margin_right = 858.0
+margin_bottom = 376.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect6" type="ColorRect" parent="."]
+margin_left = -58.0
+margin_top = -18.0
+margin_bottom = 634.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect8" type="ColorRect" parent="."]
+margin_left = 1083.0
+margin_top = -59.0
+margin_right = 1141.0
+margin_bottom = 1082.0
+rect_rotation = 90.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect7" type="ColorRect" parent="."]
+margin_left = 1026.0
+margin_top = -20.0
+margin_right = 1084.0
+margin_bottom = 632.0
+color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="ColorRect10" type="ColorRect" parent="."]
+margin_left = 66.0
+margin_top = 38.0
+margin_right = 106.0
+margin_bottom = 256.0
+color = Color( 0.964706, 0.494118, 0.0392157, 1 )
+
+[node name="ColorRect11" type="ColorRect" parent="."]
+margin_left = 86.0
+margin_top = 477.0
+margin_right = 145.0
+margin_bottom = 506.0
+color = Color( 0.964706, 0.494118, 0.0392157, 1 )
