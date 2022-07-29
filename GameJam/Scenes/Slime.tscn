@@ -1,18 +1,16 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Scripts/SlimeMov2.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Sprite-0002.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/SlimeMov.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Personagem/SteveSupremo_Andando/SteveSupremoAndando1.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
 
-[node name="Slime" type="KinematicBody2D"]
+[node name="KinematicBody2D" type="KinematicBody2D"]
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 1.66893e-06, 2.38419e-06 )
-scale = Vector2( 1.77143, 1.77143 )
 texture = ExtResource( 2 )

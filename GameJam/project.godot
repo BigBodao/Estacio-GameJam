@@ -8,16 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "KinematicBody2D",
-"class": "PlatformerController2D",
-"language": "GDScript",
-"path": "res://Scripts/SlimeMov2.gd"
-} ]
-_global_script_class_icons={
-"PlatformerController2D": ""
-}
-
 [application]
 
 config/name="GameJam"
