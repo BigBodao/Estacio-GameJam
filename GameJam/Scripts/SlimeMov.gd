@@ -19,7 +19,10 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	is_grounded = _check_is_grounded()
 	velocity.y += gravity * delta
-	_get_input()
+	if !is_bird:
+		_get_input()
+	else:
+		_get_input_flying()
 	_transform_slime()
 	velocity = move_and_slide(velocity)
 	set_animation()
@@ -31,7 +34,17 @@ func _get_input():
 	
 	if move_direction != 0:
 		$Sprite.scale.x = move_direction
+
+func _get_input_flying():
+	velocity = Vector2.ZERO
+	var direction = Vector2()
+	direction.x = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+	direction.y = int (Input.is_action_pressed("move_down")) - int(Input.is_action_pressed("jump"))
 	
+	velocity = lerp(velocity, direction * move_speed, 0.2)
+	
+	if direction.x != 0:
+		$Sprite.scale.x = direction.x
 
 func _input(event: InputEvent) -> void: #botão para pular que so funciona com gato
 	if event.is_action_pressed('jump') && is_grounded && is_cat:
