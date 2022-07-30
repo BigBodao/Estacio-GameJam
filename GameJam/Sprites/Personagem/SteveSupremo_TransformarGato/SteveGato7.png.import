@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex"
+path="res://.import/SteveGato7.png-9e78dbdc001ca0587a2a1e7a2c250679.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://icon.png"
-dest_files=[ "res://.import/icon.png-487276ed1e3a0c39cad0279d744ee560.stex" ]
+source_file="res://Sprites/Personagem/SteveSupremo_TransformarGato/SteveGato7.png"
+dest_files=[ "res://.import/SteveGato7.png-9e78dbdc001ca0587a2a1e7a2c250679.stex" ]
 
 [params]
 
