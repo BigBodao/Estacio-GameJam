@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=32 format=2]
+=======
+[gd_scene load_steps=33 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://Scripts/SlimeMov.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_Andando/slime_walk.png" type="Texture" id=2]
@@ -13,8 +17,14 @@
 [ext_resource path="res://Sprites/Personagem/SteveRato_walk/mouse_walk.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Níveis/colison_rato.tres" type="Shape2D" id=12]
 [ext_resource path="res://Scenes/Níveis/slime.tres" type="Shape2D" id=13]
+<<<<<<< Updated upstream
 [ext_resource path="res://Sound/PASSO_2.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Sound/bater_de_asas.mp3" type="AudioStream" id=15]
+=======
+[ext_resource path="res://Sound/dano.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Sound/asas_safe.mp3" type="AudioStream" id=15]
+[ext_resource path="res://Scenes/Níveis/colison_passaro.tres" type="Shape2D" id=16]
+>>>>>>> Stashed changes
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_idle/SteveSupremo_idle.png" type="Texture" id=80]
 
 [sub_resource type="Animation" id=4]
@@ -641,18 +651,20 @@ rotation = 1.57079
 shape = ExtResource( 13 )
 
 [node name="colisor_rat" type="CollisionShape2D" parent="."]
-position = Vector2( -0.500004, 9.75002 )
+visible = false
+position = Vector2( 2.00001, 9.75001 )
 rotation = 1.57079
 shape = ExtResource( 12 )
 disabled = true
 
 [node name="colisor_bird" type="CollisionShape2D" parent="."]
-position = Vector2( 1.5, 7.49999 )
+visible = false
 rotation = 1.57079
-shape = ExtResource( 12 )
+shape = ExtResource( 16 )
 disabled = true
 
 [node name="colisor_cat" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 6 )
 rotation = 1.57079
 shape = ExtResource( 13 )
@@ -725,6 +737,11 @@ editor_draw_drag_margin = true
 
 [node name="Step_slime" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
+<<<<<<< Updated upstream
+=======
+volume_db = -10.0
+pitch_scale = 2.0
+>>>>>>> Stashed changes
 
 [node name="bird_fly" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )

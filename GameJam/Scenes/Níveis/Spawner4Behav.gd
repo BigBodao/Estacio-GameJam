@@ -21,8 +21,4 @@ func _spawn(position):
 
 
 func _on_Exit_body_entered(body):
-	get_tree().change_scene("res://Scenes/Níveis/Nível_1.tscn")
-
-
-func _on_Area2D_body_entered(body):
-	_spawn(start_pos)
+	pass

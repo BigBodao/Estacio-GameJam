@@ -49,10 +49,12 @@ func _get_input_flying():
 	velocity = lerp(velocity, direction * move_speed, 0.2)
 	
 	if direction.x != 0:
+		$bird_fly.play()
 		$Sprite.scale.x = direction.x
 
 func _input(event: InputEvent) -> void: #botão para pular que so funciona com gato
 	if event.is_action_pressed('jump') && (is_grounded || is_wall) && is_cat:
+		$Step_slime.play()
 		velocity.y = jump_force / 1.5
 	#botão para voar que so funciona com passaro
 	if event.is_action_pressed('jump') && is_bird:

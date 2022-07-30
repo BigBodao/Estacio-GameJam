@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/dano.mp3-ff2da953a91bca4d1de91025023afa49.mp3str"
+
+[deps]
+
+source_file="res://Sound/dano.mp3"
+dest_files=[ "res://.import/dano.mp3-ff2da953a91bca4d1de91025023afa49.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

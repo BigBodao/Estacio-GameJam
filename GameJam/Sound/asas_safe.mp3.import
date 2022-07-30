@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/asas_safe.mp3-0720a6c927a0ed207741884def41f147.mp3str"
+
+[deps]
+
+source_file="res://Sound/asas_safe.mp3"
+dest_files=[ "res://.import/asas_safe.mp3-0720a6c927a0ed207741884def41f147.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
