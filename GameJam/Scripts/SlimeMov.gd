@@ -1,23 +1,29 @@
 extends KinematicBody2D
 
-#constantes
-const Gravity := 200.00
-const WalkS := 200
+export var speed = 200.0
+const SPEED = 180
 
-#vetor Velocidade
-var vel = Vector2()
-
+func _ready():
+	$AnimatedSprite.play('idle')
+	
 func _physics_process(delta):
-	#A slime é afetada pela gravidade
-	vel.y += delta * Gravity
-	
-	#Olhar inputs
+	var direction = Vector2.ZERO
 	if Input.is_action_pressed("ui_left"):
-		vel.x = -WalkS
-	elif Input.is_action_pressed("ui_right"):
-		vel.x = WalkS
-	else:
-		vel.x = 0
+		direction.x -= 1
+	if Input.is_action_pressed("ui_right"):
+		direction.x += 1
 	
-	#Botar o movimento em prática
-	move_and_slide(vel, Vector2.UP)
+	if direction.length()	> 0:
+		direction = direction.normalized()
+		$AnimatedSprite.play()
+	else:
+		$AnimatedSprite.play('idle')
+	
+	position += direction*speed*delta
+	
+	if direction.x != 0:
+		$AnimatedSprite.animation = 'walk'
+		$AnimatedSprite.flip_h = direction.x < 0
+	else:
+		$AnimatedSprite.animation = 'idle'
+
