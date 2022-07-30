@@ -5,12 +5,16 @@ var move_speed = 600
 export var gravity = 1200
 var jump_force = -720
 var is_grounded
+var is_wall
 onready var raycasts = $raycasts
+onready var raycastsWall1 = $raycastsWL
+onready var raycastsWall2 = $raycastsWR
 #checagem do estado do personagem, em que forma ele está transformado
 onready var is_slime = true
 onready var is_cat = false
 onready var is_mouse = false
 onready var is_bird = false
+onready var is_transforming
 
 
 func _ready():
@@ -18,6 +22,7 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	is_grounded = _check_is_grounded()
+	is_wall = _check_is_wall()
 	velocity.y += gravity * delta
 	if !is_bird:
 		_get_input()
@@ -61,6 +66,14 @@ func _check_is_grounded(): #checa se o personagem tem colisão no chão
 	#$AnimatedSprite.play('cat_jump')
 	return false
 
+func _check_is_wall():
+	for raycast in raycastsWall1.get_children():
+		for raycast2 in raycastsWall2.get_children():
+			if raycast.is_colliding() && is_cat:
+				print('bateu na parede')
+				return true
+	return false
+	
 func set_animation():
 	var anim
 	if is_cat: #criando animações de gato
@@ -69,11 +82,15 @@ func set_animation():
 			anim = 'cat_jump'
 		elif velocity.x != 0:
 			anim = 'cat_walk'
+		else:
+			anim = 'cat_idle'
 	
 	elif is_slime: #criando animções slime
 		anim = 'slime_idle'
 		if velocity.x != 0:
 			anim = 'slime_walk'
+		else:
+			anim = 'slime_idle'
 			
 	elif is_bird:
 		anim = 'bird_fly'
@@ -82,19 +99,24 @@ func set_animation():
 		anim = 'mouse_idle'
 		if velocity.x != 0:
 			anim = 'mouse_walk'
+		else:
+			anim = 'mouse_idle'
 			
-	if $anim.assigned_animation != anim:
+	if $anim.assigned_animation != anim && !is_transforming:
 		$anim.play(anim)
 	
 func _transform_slime():
-	#var anim
+	var anim
 	
 	if Input.is_action_pressed('turn_cat') && is_cat == false:
-		#anim = 'turn_cat'
-		#	if $anim.assigned_animation != anim:
-		#		$anim.play(anim)
+		anim = 'turn_cat'
 		colider_activation()
+		colider_wall_enable()
 		$colisor_cat.disabled = false
+		
+		$anim.play(anim)
+		is_transforming = true
+		$transform_timer.start()
 		print('virou gato')
 		is_cat = true
 		is_bird = false
@@ -104,13 +126,22 @@ func _transform_slime():
 		
 	if Input.is_action_pressed('turn_slime') && is_slime == false:
 		colider_activation()
+		colider_wall_desenable()
+		
 		$colisor_slime.disabled = false
+		
 		if is_cat:
-			$anim.play_backwards("turn_cat")
+			anim = 'turn_cat'
+			$anim.play_backwards(anim)
 		elif is_bird:
-			$anim.play_backwards("turn_bird")
+			anim = 'turn_bird'
+			$anim.play_backwards(anim)
 		elif is_mouse:
-			$anim.play_backwards("turn_mouse")
+			anim = 'turn_mouse'
+			$anim.play_backwards(anim)
+		is_transforming = true
+		$transform_timer.start()
+		
 		print('virou slime')
 		is_cat = false
 		is_bird = false
@@ -119,9 +150,16 @@ func _transform_slime():
 		
 	if Input.is_action_pressed("turn_mouse") && is_mouse == false:
 		colider_activation()
-		$colisor_rat.disabled = false	
-		$anim.play("turn_mouse")
+		colider_wall_desenable()
+		
+		anim = 'turn_mouse'
+		$colisor_rat.disabled = false
+		
+		$anim.play(anim)
+		is_transforming = true
+		$transform_timer.start()
 		print('virou rato')
+		
 		is_cat = false
 		is_bird = false
 		is_slime = false
@@ -129,15 +167,35 @@ func _transform_slime():
 		
 	if Input.is_action_pressed("turn_bird") && is_bird == false:
 		colider_activation()
+		colider_wall_desenable()
+		
+		anim = 'turn_bird'
 		$colisor_bird.disabled = false
-		$anim.play("turn_bird")
+		
+		$anim.play(anim)
+		is_transforming = true
+		$transform_timer.start()
 		print('virou passaro')
+		
 		is_cat = false
 		is_bird = true
 		is_slime = false
 		is_mouse = false
+		
 func colider_activation():
 	$colisor_bird.disabled = true
 	$colisor_cat.disabled = true
 	$colisor_rat.disabled = true
 	$colisor_slime.disabled = true
+	
+func colider_wall_enable():
+	$raycastsWL/RayCastL1.enabled = true
+	$raycastsWR/RayCastR1.enabled = true
+	
+
+func colider_wall_desenable():
+	$raycastsWL/RayCastL1.enabled = false
+	$raycastsWR/RayCastR1.enabled = false
+
+func _on_transform_timer_timeout():
+	is_transforming = false

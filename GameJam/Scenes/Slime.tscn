@@ -511,27 +511,23 @@ collision_mask = 14
 script = ExtResource( 1 )
 
 [node name="colisor_slime" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1, 6 )
 rotation = 1.57079
 shape = ExtResource( 13 )
 
 [node name="colisor_rat" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -0.500004, 9.75002 )
 rotation = 1.57079
 shape = ExtResource( 12 )
 disabled = true
 
 [node name="colisor_bird" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 1.5, 7.49999 )
 rotation = 1.57079
 shape = ExtResource( 12 )
 disabled = true
 
 [node name="colisor_cat" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 6 )
 rotation = 1.57079
 shape = ExtResource( 13 )
@@ -571,9 +567,25 @@ enabled = true
 cast_to = Vector2( 0, 12 )
 collision_mask = 4
 
+[node name="raycastsWL" type="Node2D" parent="."]
+position = Vector2( -2, 13 )
+
+[node name="RayCastL1" type="RayCast2D" parent="raycastsWL"]
+position = Vector2( 15, -15 )
+rotation = -1.57079
+cast_to = Vector2( 0, 12 )
+collision_mask = 4
+
+[node name="raycastsWR" type="Node2D" parent="."]
+position = Vector2( -15, 13 )
+
+[node name="RayCastR1" type="RayCast2D" parent="raycastsWR"]
+position = Vector2( 5, -15 )
+rotation = 1.57079
+cast_to = Vector2( 0, 12 )
+collision_mask = 4
+
 [node name="transform_timer" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -582,3 +594,5 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[connection signal="timeout" from="transform_timer" to="." method="_on_transform_timer_timeout"]
