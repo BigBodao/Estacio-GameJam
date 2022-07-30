@@ -15,10 +15,8 @@ follow_viewport_enable = true
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/ParallaxBackground/ParallaxLayer"]
 position = Vector2( 512, 256 )
-scale = Vector2( 1.35, 1.2 )
+scale = Vector2( 1.34615, 1.34615 )
 texture = ExtResource( 3 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 768, 480 )
 
 [node name="Tileset" parent="." instance=ExtResource( 4 )]
 cell_size = Vector2( 16, 16 )
