@@ -6,6 +6,7 @@ export var gravity = 1200
 var jump_force = -720
 var is_grounded
 onready var raycasts = $raycasts
+onready var raycastWll = $raycasts/RayCastWall
 #checagem do estado do personagem, em que forma ele está transformado
 onready var is_slime = true
 onready var is_cat = false
@@ -53,11 +54,9 @@ func _input(event: InputEvent) -> void: #botão para pular que so funciona com g
 		velocity.y = jump_force / 1.5
 
 func _check_is_grounded(): #checa se o personagem tem colisão no chão
-	for raycast in raycasts.get_children():
-		if raycast.is_colliding() && is_cat:
-			#$AnimatedSprite.animation = 'cat_idle'
+	for raycast in raycastWll.get_children():
+		if raycast.is_colliding():
 			return true
-	#$AnimatedSprite.play('cat_jump')
 	return false
 
 func set_animation():
@@ -89,6 +88,8 @@ func _transform_slime():
 	if Input.is_action_pressed('turn_slime') && is_slime == false:
 		colider_activation()
 		$colisor_slime.disabled = false
+		$raycasts/RayCastWall/WallL/RayCastWL.enabled = false
+		$raycasts/RayCastWall/WallR/RayCastWR.enabled = false
 		if is_cat:
 			$anim.play_backwards('turn_cat')
 		elif is_bird:
@@ -96,17 +97,22 @@ func _transform_slime():
 		elif is_mouse:
 			$anim.play_backwards('turn_mouse')
 		is_transforming = true
+		$transform_timer.start()
 		print('virou slime')
 		is_cat = false
 		is_bird = false
 		is_slime = true
 		is_mouse = false
+		move_speed = 600
 
 	if Input.is_action_pressed('turn_cat') && is_cat == false:
 		colider_activation()
 		$colisor_cat.disabled = false
+		$raycasts/RayCastWall/WallL/RayCastWL.enabled = true
+		$raycasts/RayCastWall/WallR/RayCastWR.enabled = true
 		$anim.play('turn_cat')
 		is_transforming = true
+		$transform_timer.start()
 		print('virou gato')
 		is_cat = true
 		is_bird = false
@@ -117,24 +123,32 @@ func _transform_slime():
 	if Input.is_action_pressed("turn_mouse") && is_mouse == false:
 		colider_activation()
 		$colisor_rat.disabled = false
+		$raycasts/RayCastWall/WallL/RayCastWL.enabled = false
+		$raycasts/RayCastWall/WallR/RayCastWR.enabled = false
 		$anim.play('turn_mouse')
 		is_transforming = true
+		$transform_timer.start()
 		print('virou rato')
 		is_cat = false
 		is_bird = false
 		is_slime = false
 		is_mouse = true
+		move_speed = 600
 
 	if Input.is_action_pressed("turn_bird") && is_bird == false:
 		colider_activation()
 		$colisor_bird.disabled = false
+		$raycasts/RayCastWall/WallL/RayCastWL.enabled = false
+		$raycasts/RayCastWall/WallR/RayCastWR.enabled = false
 		$anim.play('turn_bird')
 		is_transforming = true
+		$transform_timer.start()
 		print('virou passaro')
 		is_cat = false
 		is_bird = true
 		is_slime = false
 		is_mouse = false
+		move_speed = 600
 
 func colider_activation():
 	$colisor_bird.disabled = true
@@ -142,9 +156,5 @@ func colider_activation():
 	$colisor_rat.disabled = true
 	$colisor_slime.disabled = true
 
-
-
-
-func _on_anim_animation_finished(anim_name):
-	if anim_name == 'turn_slime' or 'turn_cat' or 'turn_bird' or 'turn_rat':
-		is_transforming = false
+func _on_transform_timer_timeout():
+	is_transforming = false

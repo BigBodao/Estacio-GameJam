@@ -1,9 +1,5 @@
 [gd_scene load_steps=27 format=2]
 
-<<<<<<< Updated upstream
-[ext_resource path="res://Scripts/SlimeMov2.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Sprite-0002.png" type="Texture" id=2]
-=======
 [ext_resource path="res://Scripts/SlimeMov.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_Andando/slime_walk.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_TransformarGato/turn_cat.png" type="Texture" id=3]
@@ -18,7 +14,6 @@
 [ext_resource path="res://Scenes/Níveis/colison_rato.tres" type="Shape2D" id=12]
 [ext_resource path="res://Scenes/Níveis/slime.tres" type="Shape2D" id=13]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_idle/SteveSupremo_idle.png" type="Texture" id=80]
->>>>>>> Stashed changes
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -59,9 +54,6 @@ tracks/2/keys = {
 "values": [ ExtResource( 80 ) ]
 }
 
-<<<<<<< Updated upstream
-[node name="Slime" type="KinematicBody2D"]
-=======
 [sub_resource type="Animation" id=13]
 resource_name = "bird_fly"
 length = 0.5
@@ -513,11 +505,9 @@ tracks/2/keys = {
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 50, 100 )
 collision_mask = 14
->>>>>>> Stashed changes
 script = ExtResource( 1 )
 
 [node name="colisor_slime" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -1, 6 )
 rotation = 1.57079
 shape = ExtResource( 13 )
@@ -544,11 +534,6 @@ shape = ExtResource( 13 )
 disabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
-<<<<<<< Updated upstream
-position = Vector2( 1.66893e-06, 2.38419e-06 )
-scale = Vector2( 1.77143, 1.77143 )
-texture = ExtResource( 2 )
-=======
 texture = ExtResource( 80 )
 hframes = 5
 
@@ -582,21 +567,38 @@ enabled = true
 cast_to = Vector2( 0, 12 )
 collision_mask = 4
 
+[node name="RayCastWall" type="Node2D" parent="raycasts"]
+
+[node name="WallR" type="Node2D" parent="raycasts/RayCastWall"]
+
+[node name="RayCastWR1" type="RayCast2D" parent="raycasts/RayCastWall/WallR"]
+position = Vector2( 0, -20 )
+cast_to = Vector2( 20, 0 )
+
+[node name="RayCastWR2" type="RayCast2D" parent="raycasts/RayCastWall/WallR"]
+position = Vector2( 0, -4 )
+cast_to = Vector2( 20, 0 )
+
+[node name="WallL" type="Node2D" parent="raycasts/RayCastWall"]
+
+[node name="RayCastWL1" type="RayCast2D" parent="raycasts/RayCastWall/WallL"]
+position = Vector2( 0, -20 )
+cast_to = Vector2( -20, 0 )
+
+[node name="RayCastWL2" type="RayCast2D" parent="raycasts/RayCastWall/WallL"]
+position = Vector2( 0, -4 )
+cast_to = Vector2( -20, 0 )
+
 [node name="transform_timer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.6, 0.5 )
-limit_left = -15
-limit_top = -30
-limit_right = 1039
-limit_bottom = 544
+zoom = Vector2( 0.7, 0.7 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
 editor_draw_limits = true
-__meta__ = {
-"_editor_description_": ""
-}
+editor_draw_drag_margin = true
 
-[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
->>>>>>> Stashed changes
+[connection signal="timeout" from="transform_timer" to="." method="_on_transform_timer_timeout"]
