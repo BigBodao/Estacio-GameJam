@@ -1,6 +1,17 @@
+<<<<<<< Updated upstream
 [gd_scene format=2]
 
 [node name="Node2D" type="Node2D"]
+=======
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Slime.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 178, 64 )
+
+[node name="Cenário de Teste" type="Node2D"]
+>>>>>>> Stashed changes
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_top = 1.0
@@ -16,6 +27,12 @@ margin_top = 515.0
 margin_right = 273.0
 margin_bottom = 635.0
 color = Color( 0.34902, 0.831373, 0.101961, 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect2/StaticBody2D"]
+position = Vector2( 168, 61 )
+shape = SubResource( 1 )
 
 [node name="ColorRect3" type="ColorRect" parent="."]
 margin_left = 327.0
@@ -79,3 +96,9 @@ margin_top = 477.0
 margin_right = 145.0
 margin_bottom = 506.0
 color = Color( 0.964706, 0.494118, 0.0392157, 1 )
+<<<<<<< Updated upstream
+=======
+
+[node name="Slime" parent="." instance=ExtResource( 1 )]
+position = Vector2( 192, 448 )
+>>>>>>> Stashed changes
