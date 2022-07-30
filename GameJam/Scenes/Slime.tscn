@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/SlimeMov.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_Andando/slime_walk.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://Sprites/Personagem/SteveRato_walk/mouse_walk.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Níveis/colison_rato.tres" type="Shape2D" id=12]
 [ext_resource path="res://Scenes/Níveis/slime.tres" type="Shape2D" id=13]
+[ext_resource path="res://Sound/PASSO_2.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Sound/bater_de_asas.mp3" type="AudioStream" id=15]
 [ext_resource path="res://Sprites/Personagem/SteveSupremo_idle/SteveSupremo_idle.png" type="Texture" id=80]
 
 [sub_resource type="Animation" id=4]
@@ -106,10 +108,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.528621 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 8 ) ]
+"values": [ ExtResource( 8 ), ExtResource( 8 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:hframes")
@@ -505,7 +507,130 @@ tracks/2/keys = {
 "values": [ 15 ]
 }
 
-[node name="Player" type="KinematicBody2D"]
+[sub_resource type="Animation" id=17]
+resource_name = "turn_slime_bird"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "turn_slime_cat"
+length = 1.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 3 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 10, 9, 8, 7, 5, 4, 3, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=18]
+resource_name = "turn_slime_mouse"
+length = 1.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 13, 12, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 6 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 15 ]
+}
+
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 position = Vector2( 50, 100 )
 collision_mask = 14
 script = ExtResource( 1 )
@@ -551,6 +676,9 @@ anims/slime_walk = SubResource( 8 )
 anims/turn_bird = SubResource( 11 )
 anims/turn_cat = SubResource( 9 )
 anims/turn_mouse = SubResource( 10 )
+anims/turn_slime_bird = SubResource( 17 )
+anims/turn_slime_cat = SubResource( 16 )
+anims/turn_slime_mouse = SubResource( 18 )
 
 [node name="raycasts" type="Node2D" parent="."]
 position = Vector2( -2, 13 )
@@ -594,5 +722,11 @@ drag_margin_h_enabled = true
 drag_margin_v_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="Step_slime" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 14 )
+
+[node name="bird_fly" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 15 )
 
 [connection signal="timeout" from="transform_timer" to="." method="_on_transform_timer_timeout"]

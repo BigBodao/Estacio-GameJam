@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/PASSO_2.mp3-9db09a075fd45af805772da195a10fd4.mp3str"
+
+[deps]
+
+source_file="res://Sound/PASSO_2.mp3"
+dest_files=[ "res://.import/PASSO_2.mp3-9db09a075fd45af805772da195a10fd4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

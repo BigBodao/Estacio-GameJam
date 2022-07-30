@@ -52,7 +52,7 @@ func _get_input_flying():
 		$Sprite.scale.x = direction.x
 
 func _input(event: InputEvent) -> void: #botão para pular que so funciona com gato
-	if event.is_action_pressed('jump') && is_grounded && is_cat:
+	if event.is_action_pressed('jump') && (is_grounded || is_wall) && is_cat:
 		velocity.y = jump_force / 1.5
 	#botão para voar que so funciona com passaro
 	if event.is_action_pressed('jump') && is_bird:
@@ -68,10 +68,11 @@ func _check_is_grounded(): #checa se o personagem tem colisão no chão
 
 func _check_is_wall():
 	for raycast in raycastsWall1.get_children():
-		for raycast2 in raycastsWall2.get_children():
-			if raycast.is_colliding() && is_cat:
-				print('bateu na parede')
-				return true
+		if raycast.is_colliding() && is_cat:
+			return true
+	for raycast2 in raycastsWall2.get_children():
+		if raycast2.is_colliding() && is_cat:
+			return true
 	return false
 	
 func set_animation():
@@ -108,22 +109,6 @@ func set_animation():
 func _transform_slime():
 	var anim
 	
-	if Input.is_action_pressed('turn_cat') && is_cat == false:
-		anim = 'turn_cat'
-		colider_activation()
-		colider_wall_enable()
-		$colisor_cat.disabled = false
-		
-		$anim.play(anim)
-		is_transforming = true
-		$transform_timer.start()
-		print('virou gato')
-		is_cat = true
-		is_bird = false
-		is_slime = false
-		is_mouse = false
-		move_speed = 1200
-		
 	if Input.is_action_pressed('turn_slime') && is_slime == false:
 		colider_activation()
 		colider_wall_desenable()
@@ -147,6 +132,24 @@ func _transform_slime():
 		is_bird = false
 		is_slime = true
 		is_mouse = false
+		move_speed = 600
+
+	if Input.is_action_pressed('turn_cat') && is_cat == false:
+		anim = 'turn_cat'
+		colider_activation()
+		colider_wall_enable()
+		$colisor_cat.disabled = false
+		
+		$anim.play(anim)
+		is_transforming = true
+		$transform_timer.start()
+		print('virou gato')
+		is_cat = true
+		is_bird = false
+		is_slime = false
+		is_mouse = false
+		move_speed = 1200
+		
 		
 	if Input.is_action_pressed("turn_mouse") && is_mouse == false:
 		colider_activation()
@@ -164,6 +167,7 @@ func _transform_slime():
 		is_bird = false
 		is_slime = false
 		is_mouse = true
+		move_speed = 600
 		
 	if Input.is_action_pressed("turn_bird") && is_bird == false:
 		colider_activation()
@@ -181,6 +185,7 @@ func _transform_slime():
 		is_bird = true
 		is_slime = false
 		is_mouse = false
+		move_speed = 600
 		
 func colider_activation():
 	$colisor_bird.disabled = true
@@ -199,3 +204,5 @@ func colider_wall_desenable():
 
 func _on_transform_timer_timeout():
 	is_transforming = false
+
+

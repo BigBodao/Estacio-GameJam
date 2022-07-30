@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/vento.mp3-344946bee155c57a55e9316e6c5e27d0.mp3str"
+
+[deps]
+
+source_file="res://Sound/vento.mp3"
+dest_files=[ "res://.import/vento.mp3-344946bee155c57a55e9316e6c5e27d0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
