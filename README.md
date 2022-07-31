@@ -2,6 +2,7 @@
 projeto gamejam estacio
 
 Nome: Steve Slime
+
 Temas abordados: Mudança, Voar
 
 Jogos de plataforma 2D onde o protagonista é uma slime capaz de se transformar em diferentes animais para adquirir novas habilidades, como um gato, um pássaro e um rato.
